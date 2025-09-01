@@ -2,17 +2,36 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>My Mini App</title>
+  <title>Мы работаем</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     body {
-      background: #1c1c1c;
-      color: white;
-      font-family: sans-serif;
+      background: #f5f6fa;
+      font-family: "Helvetica Neue", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
       text-align: center;
-      margin-top: 50px;
+      color: #2f3640;
+    }
+    img {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 16px;
+      max-width: 300px;
+      line-height: 1.4;
     }
     button {
+      margin-top: 30px;
       padding: 10px 20px;
       border: none;
       border-radius: 8px;
@@ -24,19 +43,24 @@
   </style>
 </head>
 <body>
-  <h1 id="hello">Привет 👋</h1>
-  <button id="btn">Отправить боту</button>
+  <!-- Утенок (можно заменить на любую картинку) -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Duck_icon.svg" alt="Утенок">
+  
+  <h1>Мы ещё работаем!</h1>
+  <p>Мы крутые, но пока дорабатываем приложение. Скоро всё заработает, держись с нами!</p>
+  
+  <button id="closeBtn">Закрыть</button>
 
   <script>
     const tg = window.Telegram.WebApp;
-    const user = tg.initDataUnsafe?.user;
-    if (user) {
-      document.getElementById("hello").innerText = `Привет, ${user.first_name} 👋`;
-    }
-    document.getElementById("btn").addEventListener("click", () => {
-      tg.sendData("Сообщение из Mini App");
-    });
+
+    // Разворачиваем на весь экран
     tg.expand();
+
+    // Кнопка закрытия (работает в Telegram Mini App)
+    document.getElementById("closeBtn").addEventListener("click", () => {
+      tg.close();
+    });
   </script>
 </body>
 </html>
